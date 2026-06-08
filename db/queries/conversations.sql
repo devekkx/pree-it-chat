@@ -28,8 +28,8 @@ SELECT c.id, c.type, c.name, c.created_by, c.created_at, c.updated_at
 FROM chat_schema.conversations c
 WHERE c.type = 'dm'
   AND c.id IN (
-      SELECT conversation_id FROM chat_schema.conversation_members WHERE user_id = $1
+      SELECT cm1.conversation_id FROM chat_schema.conversation_members cm1 WHERE cm1.user_id = $1
   )
   AND c.id IN (
-      SELECT conversation_id FROM chat_schema.conversation_members WHERE user_id = $2
+      SELECT cm2.conversation_id FROM chat_schema.conversation_members cm2 WHERE cm2.user_id = $2
   );
